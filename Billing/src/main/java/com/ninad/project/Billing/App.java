@@ -62,7 +62,7 @@ public class App
     	   if (verifyPassword.verify(username, password))
     	   {
     		   int op ;
-    		   System.out.println( "1.Users /n  /n2.Product /n3.Custmr /n4.Bill ");
+    		   System.out.println( "\n1.Users \n2.Product \n3.Custmr \n4.Bill ");
     		   op=  Integer.parseInt(s.nextLine());
     		   
     		   switch (op) {
