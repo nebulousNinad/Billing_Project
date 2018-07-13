@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 @Entity
 @Embeddable
@@ -12,7 +13,8 @@ public class Product {
 
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="my_seq_gen")
+	@SequenceGenerator(name="my_seq_gen", sequenceName="prod_seq",allocationSize=1)
 	private int productId;
 	private String productName;
 	private double productPrice;

@@ -24,6 +24,8 @@ import com.ninad.project.utility.verifyPassword;
  */
 public class App 
 {
+	int globalvariable;
+	
     public static void main( String[] args ) throws IOException
     {    
     	
@@ -59,7 +61,7 @@ public class App
     	   System.out.println("Enter User Password : ");
     	   password = s.nextLine();
     	   
-    	   if (verifyPassword.verify(username, password))
+    	   if (verifyPassword.verify(username, password))//
     	   {
     		   int op ;
     		   System.out.println( "\n1.Users \n2.Product \n3.Custmr \n4.Bill ");
@@ -118,12 +120,12 @@ public class App
     			            	              
     			            	              User user = UserService.getuser(myid);
     			            	              
-    			            	            System.out.println("This is the user You want to be updated");    			            	            
+    			            	              System.out.println("This is the user You want to be updated");    			            	            
                                                                                          
-                                            System.out.println(user);
+                                              System.out.println(user);
                                             
-                                            String uname ,pwd ,roll , city ;
-       			            	         int sal;
+                                              String uname ,pwd ,roll , city ;
+       			            	              int sal;
        			            	         
        			            	         System.out.println("Enter username ");
        			            	         uname = br.readLine();

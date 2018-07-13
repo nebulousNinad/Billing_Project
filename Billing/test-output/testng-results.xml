@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="1" ignored="0" total="3" passed="2">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="28049" started-at="2018-07-13T12:03:02Z" finished-at="2018-07-13T12:03:30Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="28049" started-at="2018-07-13T12:03:02Z" finished-at="2018-07-13T12:03:30Z">
+      <class name="com.ninad.project.Billing.TestAuthenticate">
+        <test-method status="FAIL" signature="testAuthenticate(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.ninad.project.Billing.TestAuthenticate@f5e5e3]" name="testAuthenticate" duration-ms="2377" started-at="2018-07-13T17:33:27Z" data-provider="getData" finished-at="2018-07-13T17:33:29Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[f]]>
+              </value>
+            </param>
+          </params>
+          <exception class="org.hibernate.exception.GenericJDBCException">
+            <message>
+              <![CDATA[Error accessing column metadata: billing.Bill]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.hibernate.exception.GenericJDBCException: Error accessing column metadata: billing.Bill
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:47)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:109)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:95)
+	at org.hibernate.tool.schema.extract.internal.InformationExtractorJdbcDatabaseMetaDataImpl.convertSQLException(InformationExtractorJdbcDatabaseMetaDataImpl.java:99)
+	at org.hibernate.tool.schema.extract.internal.InformationExtractorJdbcDatabaseMetaDataImpl.getColumn(InformationExtractorJdbcDatabaseMetaDataImpl.java:481)
+	at org.hibernate.tool.schema.extract.internal.TableInformationImpl.getColumn(TableInformationImpl.java:68)
+	at org.hibernate.mapping.Table.sqlAlterStrings(Table.java:456)
+	at org.hibernate.tool.schema.internal.SchemaMigratorImpl.migrateTable(SchemaMigratorImpl.java:254)
+	at org.hibernate.tool.schema.internal.SchemaMigratorImpl.doMigrationToTargets(SchemaMigratorImpl.java:170)
+	at org.hibernate.tool.schema.internal.SchemaMigratorImpl.doMigration(SchemaMigratorImpl.java:60)
+	at org.hibernate.tool.hbm2ddl.SchemaUpdate.execute(SchemaUpdate.java:134)
+	at org.hibernate.tool.hbm2ddl.SchemaUpdate.execute(SchemaUpdate.java:101)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:470)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:444)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:708)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:724)
+	at com.ninad.project.utility.SessionFactoryUtil.getSessionFacory(SessionFactoryUtil.java:24)
+	at com.ninad.project.utility.verifyPassword.verify(verifyPassword.java:20)
+	at com.ninad.project.Billing.TestAuthenticate.testAuthenticate(TestAuthenticate.java:42)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:108)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:661)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:869)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1193)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:126)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:744)
+	at org.testng.TestRunner.run(TestRunner.java:602)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:380)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:375)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1226)
+	at org.testng.TestNG.runSuites(TestNG.java:1144)
+	at org.testng.TestNG.run(TestNG.java:1115)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:230)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:76)
+Caused by: java.sql.SQLException: Error on delete of 'C:\Windows\SERVIC~2\NETWOR~1\AppData\Local\Temp\#sql850_42_4.MYD' (Errcode: 13 - Permission denied)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1055)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:956)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3558)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3490)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:919)
+	at com.mysql.jdbc.MysqlIO.nextRow(MysqlIO.java:1416)
+	at com.mysql.jdbc.MysqlIO.readSingleRowSet(MysqlIO.java:2883)
+	at com.mysql.jdbc.MysqlIO.getResultSet(MysqlIO.java:476)
+	at com.mysql.jdbc.MysqlIO.readResultsForQueryOrUpdate(MysqlIO.java:2576)
+	at com.mysql.jdbc.MysqlIO.readAllResults(MysqlIO.java:1757)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2167)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2637)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2566)
+	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1464)
+	at com.mysql.jdbc.DatabaseMetaData$2.forEach(DatabaseMetaData.java:2456)
+	at com.mysql.jdbc.IterateBlock.doForAll(IterateBlock.java:50)
+	at com.mysql.jdbc.DatabaseMetaData.getColumns(DatabaseMetaData.java:2346)
+	at org.hibernate.tool.schema.extract.internal.InformationExtractorJdbcDatabaseMetaDataImpl.getColumn(InformationExtractorJdbcDatabaseMetaDataImpl.java:454)
+	... 39 more
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.hibernate.exception.GenericJDBCException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testAuthenticate -->
+        <test-method status="PASS" signature="testAuthenticate(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.ninad.project.Billing.TestAuthenticate@f5e5e3]" name="testAuthenticate" duration-ms="660" started-at="2018-07-13T17:33:29Z" data-provider="getData" finished-at="2018-07-13T17:33:30Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[adsg]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[zxczxcz]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[f]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testAuthenticate -->
+        <test-method status="PASS" signature="testAuthenticate(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.ninad.project.Billing.TestAuthenticate@f5e5e3]" name="testAuthenticate" duration-ms="15" started-at="2018-07-13T17:33:30Z" data-provider="getData" finished-at="2018-07-13T17:33:30Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[abc]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[f]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testAuthenticate -->
+      </class> <!-- com.ninad.project.Billing.TestAuthenticate -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

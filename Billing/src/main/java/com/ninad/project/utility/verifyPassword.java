@@ -33,7 +33,7 @@ public class verifyPassword {
 				System.out.println("username exists...");
 				if (u.getPassword().equals(pwd)){
 					System.out.println("Valid Username and Password");
-					SessionFactoryUtil.user = uname;
+					SessionFactoryUtil.user = uname;                    
 					flag = true;
 				}
 			}

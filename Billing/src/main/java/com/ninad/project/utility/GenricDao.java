@@ -22,7 +22,14 @@ public class GenricDao {
 		Transaction tr = s.beginTransaction();
 		
 		Criteria cr = s.createCriteria(T);	
+		     
+		
+		///cr.createCriteria("Ninad");
+		
+		
 		List<T> list = cr.list();
+		
+	//	Object o =cr.uniqueResult();
 		s.close();
 		return list;
 	

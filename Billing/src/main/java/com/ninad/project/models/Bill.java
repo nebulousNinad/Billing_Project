@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 
 
 @Entity
@@ -44,7 +45,8 @@ public class Bill {
 	
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="my_seq_gen")
+	@SequenceGenerator(name="my_seq_gen", sequenceName="bill_seq",allocationSize=1)
 	public int getBill_Id() {
 		return bill_Id;
 	}

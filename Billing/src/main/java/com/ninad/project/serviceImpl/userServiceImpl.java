@@ -38,7 +38,7 @@ public class userServiceImpl implements UserService {
 		Session s =SF.openSession();
 		User u =s.get(User.class, userId);
 		
-//         User u = GenricDao.getObject(User.class, 1);
+         User u2 = GenricDao.getObject(User.class, 1);
 		
 		return u;
 	}
