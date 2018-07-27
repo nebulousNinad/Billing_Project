@@ -26,6 +26,17 @@ public class SessionFactoryUtil {
 		
 		return SF;				
 	}
+		
+
+	private static SessionFactory sf=null;
+	public static SessionFactory sessionFactory()
+	{
+		if(sf==null)
+		{
+			sf=new Configuration().configure().buildSessionFactory();
+		}
+		return sf;
+	}
 	
 	
 	public static String getloggedUser (){

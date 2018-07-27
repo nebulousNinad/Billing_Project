@@ -7,8 +7,11 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Scanner;
 
+import org.hibernate.SessionFactory;
+
 import com.ninad.project.models.Bill;
 import com.ninad.project.models.Customer;
+import com.ninad.project.models.EmployeeEntity;
 import com.ninad.project.models.Product;
 import com.ninad.project.models.User;
 import com.ninad.project.serviceImpl.billServiceImpl;
@@ -29,11 +32,17 @@ public class App
     public static void main( String[] args ) throws IOException
     {    
     	
+    	
+    	//starting DEV branch...
+    	
+    	
     	userServiceImpl UserService = new userServiceImpl();
     	productServiceImpl ProductService = new productServiceImpl();
     	billServiceImpl BillService = new billServiceImpl();
     	customerServiceImpl CustomerService = new customerServiceImpl();
     	
+    	SessionFactory sf =SessionFactoryUtil.sessionFactory();
+    	sf.openSession().save(new EmployeeEntity());
     	
     	int option;
     	
