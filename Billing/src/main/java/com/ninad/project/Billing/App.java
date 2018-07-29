@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,6 +15,7 @@ import com.ninad.project.models.Bill;
 import com.ninad.project.models.Customer;
 import com.ninad.project.models.EmployeeEntity;
 import com.ninad.project.models.Product;
+import com.ninad.project.models.Transaction;
 import com.ninad.project.models.User;
 import com.ninad.project.serviceImpl.billServiceImpl;
 import com.ninad.project.serviceImpl.customerServiceImpl;
@@ -43,20 +46,30 @@ public class App
     	
     	SessionFactory sf =SessionFactoryUtil.sessionFactory();
     	sf.openSession().save(new EmployeeEntity());
-    	
+    	  Scanner s = new Scanner(System.in);
+          BufferedReader br =  new BufferedReader(new InputStreamReader(System.in));
     	int option;
     	
     	String username;
     	String password="";
     	
     	
-        System.out.println( "Select from following Options" );
-        
-        System.out.println( "1.Login ");
+    	System.out.println("Enter Bill id ");
+    	int billid =Integer.parseInt(br.readLine());
+    	Bill mybill = BillService.getBill(billid);
+    	System.out.println(mybill);
+    	System.out.println(mybill.getTransaction());
+    	System.out.println(mybill.getTransaction().getProdqty().size());
+       
          
-        Scanner s = new Scanner(System.in);
-        BufferedReader br =  new BufferedReader(new InputStreamReader(System.in));
+      
+            if(true)
+            	return;
             
+            System.out.println("controll returned..");
+            System.out.println( "Select from following Options" );
+            
+            System.out.println( "1.Login ");
         option=  Integer.parseInt(s.nextLine());
         
         
@@ -251,12 +264,56 @@ public class App
     			            
     			            case 1 : {  
     			            	           int pid;
-    			            	           double qty;
-    			            	           double amt ;
-    			            	          
+    			            	           
+    			            	           double amt=0.0 ;
+    			            	           double qty=0.0;
+    			            	           boolean prodselect = false;
+    			            	           List <Product> prodlist = new ArrayList<Product>();
+    			            	           List<Double> qtylist=new ArrayList<Double>();
+    			            	           do{
+    			            	        	     System.out.println("Select Product");
+    	    			            	         List<Product> prlist = ProductService.getAllProducts();
+    	    			            	         int var = 1;
+    	    			            	         for (Product p :prlist){    			            	        	 
+    	    			            	        	 System.out.println(var+"."+p.getProductName()+"  "+p.getProductPrice()+"\n");    			            	        	 
+    	    			            	        	 var++;
+    	    			            	         }
+    	    			            	         
+    	    			            	         pid = s.nextInt();
+    	    			            	       boolean  qtyflag=false;
+    	    			            	         do{
+    	    			            	         
+    	    			            	         System.out.println("Enter product qty");
+    	    			            	         qty = s.nextDouble();
+    	    			            	         
+    	    			            	         
+    	    			            	         Product  prod = prlist.get(pid-1);
+    	    			            	         if (prod.getAvailableQuantity() > qty ){ 
+    	    			            	        	 prodlist.add(prod);
+    	    			            	        	 amt = amt+ prod.getProductPrice() * qty ; 
+    	    			            	        	 qtylist.add(qty);
+    	    			            	        	 prod.setAvailableQuantity(prod.getAvailableQuantity()-qty);
+    	    	    			            	     ProductService.addProduct(prod);
+    	    	    			            	     qtyflag=false;
+    	    			            	         }
+    	    			            	         else{  
+    	    			            	        	   System.out.println("sorry plz enter less quantity");
+    	    			            	        	   qtyflag=true;
+    	    			            	             }
+    	    			            	         }
+    	    			            	         while(qtyflag);  
+                                               System.out.println("to add more prods press y");
+    	    			            	         String opt=br.readLine();
+    	    			            	         if(opt.equalsIgnoreCase("y")){
+    	    			            	        	 prodselect=true;
+    			            	           }else{
+    			            	        	   prodselect=false;
+    			            	           }
+    			            	           }
+    			            	          while(prodselect);
     			            	           
     			            	           
-    			            	         System.out.println("Select Product");
+    			            	       /*  System.out.println("Select Product");
     			            	         List<Product> prlist = ProductService.getAllProducts();
     			            	         int var = 1;
     			            	         for (Product p :prlist){    			            	        	 
@@ -269,45 +326,49 @@ public class App
     			            	         qty = s.nextDouble();
     			            	         
     			            	         Product  prod = prlist.get(pid-1);
-    			            	         if (prod.getAvailableQuantity() > qty ){    			            	        	    
-    			            	               amt = prod.getProductPrice() * qty ; 
+    			            	         if (prod.getAvailableQuantity() > qty ){  			            	        	    
+    			            	               amt = prod.getProductPrice() * qty ; */
     			            	               
     			            	               List<Customer> clist = CustomerService.getAllCustomers();
     			            	               System.out.println("Select Customer");
     			            	               int i = 1;
     			            	               for (Customer c : clist){
     			            	            	   System.out.println(i+"."+c.getCustName()+"\n");
-    			            	            	   
+    			            	            	   i++;
     			            	            	   
     			            	               }
     			            	               int a = Integer.parseInt(br.readLine())-1;
     			            	               Customer cust =clist.get(a);
     			            	               
+    			            	               HashMap<Product, Double> hm = new HashMap<Product, Double>();
     			            	               
-    			            	        	   Date date = new Date( new java.util.Date().getDate() );
-    	    			            	       Bill b = new Bill(date, cust, prod, qty, amt, SessionFactoryUtil.user);
-    	    			            	       BillService.saveBill(b);
-    	    			            	       prod.setAvailableQuantity(prod.getAvailableQuantity()-qty);
-    	    			            	       ProductService.addProduct(prod);
-    	    			            	       System.out.println("bill saved successfully " +b.getBill_Id());
+    			            	               for(int my=0;i<prodlist.size();i++){
+    			            	               hm.put(prodlist.get(my), qtylist.get(my));
+    			            	               }
+    			            	               
+    			            	               Bill bill = new Bill();
+    			            	               Transaction tr = new Transaction(bill, prodlist, qtylist, hm);
+    			            	               bill.setAmmount(amt);
+    			            	               bill.setCustommer(cust);
+    			            	               bill.setPoc(SessionFactoryUtil.user);
+    			            	               bill.setTransaction(tr);
+    			            	               bill.setDate(new Date( new java.util.Date().getDate()));
+    			            	               BillService.saveBill(bill);
+    			            	               
+    			            	               
+    			            	        	   //Date date = new Date( new java.util.Date().getDate() );
+    	    			            	      /* Bill b = new Bill(date, cust, prodlist, qtylist, amt, SessionFactoryUtil.user);
+    	    			            	       BillService.saveBill(b);*/
+    	    			            	       
+    	    			            	       System.out.println("bill saved successfully " +bill.getBill_Id());
     	    			            	       cust.setBalance(cust.getBalance()+amt);
     	    			            	       CustomerService.addCustomer(cust);
-    	    			            	       
-    	    			            	       
-    			            	         }
-    			            	         else {
-    			            	        	 System.out.println(" Sorry!! no enough products available. ");
+    	    			            	       System.out.println(bill);
+    	    			            	      
     			            	         }
     			            	         
-    			            	
-    			            	       
-    			            	
-    			                     }
-    			            
     			            }
-    			   
-    			          
-    			   
+    			            
 	                    }//end of bill switch
     		   
     		   }//inner switch

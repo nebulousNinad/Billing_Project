@@ -23,8 +23,8 @@ public class billServiceImpl implements BillService {
 	}
 
 	public Bill getBill(int billId) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return GenricDao.getObject(Bill.class, billId);
 	}
 
 }

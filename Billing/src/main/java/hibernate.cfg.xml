@@ -6,10 +6,10 @@
 <session-factory>
 		<property name="hibernate.dialect"> org.hibernate.dialect.MySQLDialect</property>
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/billing</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/billingdev</property>
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password">root</property>
-		<property name="hibernate.hbm2ddl.auto">create</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
 		<property name="show_sql">true</property>
 		
 		<!-- configuring getCureentSession() -->
@@ -28,7 +28,8 @@
 		<mapping class = "com.ninad.project.models.Product" />
 		
 		<mapping class = "com.ninad.project.models.EmployeeEntity" />
-		
+		<mapping class = "com.ninad.project.models.Transaction" />
+		<mapping class = "java.lang.Double" />
 		
 		
 	</session-factory>
